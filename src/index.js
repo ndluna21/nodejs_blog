@@ -9,26 +9,25 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, "public")));
 
 // HTTP logger
-app.use(morgan("combined"));
+// app.use(morgan("combined"));
 
 // Template engine
-app.engine(
-    "hbs",
-    engine({
+app.engine("hbs",engine({
         extname: ".hbs",
-    })
-);
+}));
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources/views"));
 
 app.get("/luna", (req, res) => {
-    // res.send("Hello World!");
     res.render("home");
 });
 
 app.get("/news", (req, res) => {
-    // res.send("Hello World!");
     res.render("news");
+});
+
+app.get("/search", (req, res) => {
+    res.render("search");
 });
 
 app.listen(port, () => {
