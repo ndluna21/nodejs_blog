@@ -1,34 +1,46 @@
 {
-  "name": "blog",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon --inspect src/index.js",
-    "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/luancntt2k600510/nodejs_blog.git"
-  },
-  "keywords": [
-    "nodejs",
-    "blog"
-  ],
-  "author": "luna",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/luancntt2k600510/nodejs_blog/issues"
-  },
-  "homepage": "https://github.com/luancntt2k600510/nodejs_blog#readme",
-  "dependencies": {
-    "express": "^4.18.2",
-    "express-handlebars": "^7.0.4"
-  },
-  "devDependencies": {
-    "morgan": "^1.10.0",
-    "node-sass": "^8.0.0",
-    "nodemon": "^2.0.22"
-  }
+    "name": "blog",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "beautiful": "lint-staged",
+        "start": "nodemon --inspect src/index.js",
+        "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/luancntt2k600510/nodejs_blog.git"
+    },
+    "keywords": [
+        "nodejs",
+        "blog"
+    ],
+    "author": "luna",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/luancntt2k600510/nodejs_blog/issues"
+    },
+    "homepage": "https://github.com/luancntt2k600510/nodejs_blog#readme",
+    "": {
+        "src/**/*.{js, json, scss}": "prettier --single-quote --trailing-comma all --tab-width 2 --write docs package.json "
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "lint-staged"
+      }
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "express-handlebars": "^7.0.4"
+    },
+    "devDependencies": {
+        "husky": "^8.0.3",
+        "lint-staged": "^13.2.0",
+        "morgan": "^1.10.0",
+        "node-sass": "^8.0.0",
+        "nodemon": "^2.0.22",
+        "prettier": "^2.8.7"
+    }
 }
