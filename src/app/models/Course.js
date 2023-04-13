@@ -7,10 +7,10 @@ const Schema = mongoose.Schema;
 
 const Course = new Schema(
     {
-        name: { type: String, require: true, },
+        name: { type: String, required: true, },
         description: { type: String },
         image: { type: String },
-        videoId: { type: String, require: true },
+        videoId: { type: String, required: true },
         level: { type: String },
         slug: { type: String, slug: "name", unique: true },
     },
