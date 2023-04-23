@@ -1,12 +1,12 @@
-const Course = require("../models/Course");
-const { mongooseToObject } = require("../../ulti/mongoose");
+const Course = require('../models/Course');
+const { mongooseToObject } = require('../../ulti/mongoose');
 
 class CourseController {
     // [GET] /course/slug
     show(req, res, next) {
-        Course.findOne({ slug: req.params.slug })
+        Course.findOne({ slug: rexq.params.slug })
             .then((course) => {
-                res.render("courses/show", {
+                res.render('courses/show', {
                     course: mongooseToObject(course),
                 });
             })
@@ -15,17 +15,16 @@ class CourseController {
 
     // [GET] /course/create
     create(req, res, next) {
-        res.render("courses/create");
+        res.render('courses/create');
     }
 
     // [POST] /course/store
     store(req, res, next) {
-        const formData = req.body;
-        formData.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
-        const course = new Course(formData);
+        req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
+        const course = new Course(req.body);
         course
             .save()
-            .then(() => res.redirect("/"))
+            .then(() => res.redirect('/me/stored/courses'))
             .catch((next) => {});
     }
 
@@ -33,7 +32,7 @@ class CourseController {
     edit(req, res, next) {
         Course.findById(req.params.id)
             .then((course) =>
-                res.render("courses/edit", {
+                res.render('courses/edit', {
                     course: mongooseToObject(course),
                 })
             )
@@ -43,14 +42,28 @@ class CourseController {
     // [PUT] /course/:id
     update(req, res, next) {
         Course.updateOne({ _id: req.params.id }, req.body)
-            .then(() => res.redirect("/me/stored/courses"))
+            .then(() => res.redirect('/me/stored/courses'))
             .catch(next);
     }
 
-    // [DELETE] /course/:id
+    // [DELETE] /courses/:id
     destroy(req, res, next) {
         Course.deleteOne({ _id: req.params.id })
-            .then(() => res.redirect("back"))
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    // [DELETE] /course/:id/force
+    forceDestroy(req, res, next) {
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    // [PATCH] /course/:id/restore
+    restore(req, res, next) {
+        Course.restore({ _id: req.params.id })
+            .then(() => res.redirect('back'))
             .catch(next);
     }
 }

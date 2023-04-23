@@ -1,13 +1,15 @@
 <div class="mt-4">
-    <h3>Khóa học của tôi</h3>
+    <div>
+        <h3>Khóa học của tôi</h3>
+        <a href="/me/trash/courses">Thùng rác</a>
+    </div>
     <table class="table mt-4">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tên khóa học</th>
                 <th scope="col">Trình độ</th>
-                <th scope="col">Thời gian tạo</th>
-                <th scope="col"></th>
+                <th scope="col" colspan="2">Thời gian tạo</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +23,13 @@
                     <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
                     <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}"
                         data-target="#delete-course-modal">Xóa</a>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="5" class="text-center">
+                    Bạn chưa đăng khóa học nào.
+                    <a href="/courses/create">Đăng khóa học</a>
                 </td>
             </tr>
             {{/each}}
