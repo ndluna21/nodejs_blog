@@ -1,9 +1,8 @@
 const path = require('path');
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const methodOverride = require('method-override')
 const { engine } = require('express-handlebars');
-// const handlebars = require('express-handlebars');
 
 const route = require('./routes');
 const db = require('./config/db');
@@ -14,7 +13,7 @@ db.connect();
 const app = express();
 const port = 3000;
 
-
+// Use static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(
@@ -23,6 +22,10 @@ app.use(
     })
 );
 app.use(express.json());
+
+app.get('/news', (req, res) => {
+    res.render('news');
+})
 
 app.use(methodOverride('_method'))
 
@@ -41,8 +44,6 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
-
-// Home, Search, Contact
 
 // Route init
 route(app);
